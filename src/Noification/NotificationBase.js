@@ -17,6 +17,10 @@ export class NotificationBase extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			text: ''
+		}
+
 		NotificationBase.show = () => {
 			try {
 				this.show();
@@ -53,7 +57,11 @@ export class NotificationBase extends React.Component {
 
 	timer;
 
-	show = () => {
+	show = (text = null) => {
+		this.setState({
+			text: (text) ? text : this.props.text
+		})
+
 		const {onShow, tapticFeedback, hideStatusBar} = this.props;
 		clearTimeout(this.timer);
 		Animated.timing(this.translateY, {
@@ -142,7 +150,9 @@ export class NotificationBase extends React.Component {
 	}
 
 	renderOwnComponent() {
-		const {textColor, text} = this.props;
+		const {textColor} = this.props;
+		const {text} = this.state;
+
 		return <Text style={[IOStyle.text, {color: textColor}]}>{text}</Text>;
 	}
 }
