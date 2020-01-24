@@ -23,7 +23,11 @@ export class NotificationBase extends React.Component {
 
 		NotificationBase.show = (text = null) => {
 			try {
-				this.show(text);
+				this.setState({
+					text: (text) ? text : this.props.text
+				})
+
+				this.show();
 			} catch (e) {
 				throw new Error('Unable to show Notification, because there is no instance of Notification');
 			}
@@ -57,11 +61,7 @@ export class NotificationBase extends React.Component {
 
 	timer;
 
-	show = (text = null) => {
-		this.setState({
-			text: (text) ? text : this.props.text
-		})
-
+	show = () => {
 		const {onShow, tapticFeedback, hideStatusBar} = this.props;
 		clearTimeout(this.timer);
 		Animated.timing(this.translateY, {
