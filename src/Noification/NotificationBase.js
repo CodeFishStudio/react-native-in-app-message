@@ -58,8 +58,6 @@ export class NotificationBase extends React.Component {
 	timer;
 
 	show = (text = null) => {
-		console.log(text);
-
 		this.setState({
 			text: (text) ? text : this.props.text
 		})
