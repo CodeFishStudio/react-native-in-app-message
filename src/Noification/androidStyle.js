@@ -2,7 +2,7 @@ import {StyleSheet} from "react-native";
 
 export const androidStyle = StyleSheet.create({
   notification: {
-    width: '96%',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
@@ -23,7 +23,9 @@ export const androidStyle = StyleSheet.create({
     marginVertical: 16,
   },
   content: {
-    width: '98%',
+    width: '100%',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

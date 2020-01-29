@@ -41,7 +41,7 @@ export class Notification extends NotificationBase {
 									onGestureEvent={onForceTouchGestureEvent}
 									onHandlerStateChange={onForceTouchHandlerStateChange}>
 									<View style={IOStyle.content}>
-										{customComponent ? this.renderCustomComponent() : this.renderOwnComponent()}
+										{customComponent ? this.renderCustomComponent() : this.renderOwnComponent(IOStyle.text)}
 										{showKnob && <View style={[IOStyle.knob, {backgroundColor: textColor}]} />}
 									</View>
 								</ForceTouchGestureHandler>

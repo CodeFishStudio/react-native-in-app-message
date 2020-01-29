@@ -1,6 +1,5 @@
 import React from 'react';
 import { Animated, Text, Easing, Platform, StatusBar } from "react-native";
-import { IOStyle } from "./iOStyle";
 import { TapticFeedback } from "../../index";
 
 const animatedDuration = 350;
@@ -149,10 +148,10 @@ export class NotificationBase extends React.Component {
 		return this.props.customComponent;
 	}
 
-	renderOwnComponent() {
+	renderOwnComponent(textStyle) {
 		const {textColor} = this.props;
 		const {text} = this.state;
 
-		return <Text style={[IOStyle.text, {color: textColor}]}>{text}</Text>;
+		return <Text style={[textStyle, {color: textColor}]}>{text}</Text>;
 	}
 }

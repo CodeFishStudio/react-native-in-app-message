@@ -40,11 +40,6 @@ export class Notification extends NotificationBase {
 		}
 	};
 
-	renderOwnComponent() {
-		const {textColor, text} = this.props;
-		return <Text style={[androidStyle.text, {color: textColor}]}>{text}</Text>;
-	}
-
 	render() {
 		const {customComponent, onPress, style} = this.props;
 		const animatedStyle = [androidStyle.notification,
@@ -58,7 +53,7 @@ export class Notification extends NotificationBase {
 					<Animated.View onLayout={this.handleOnLayout} style={animatedStyle}>
 						<TouchableOpacity style={androidStyle.container} activeOpacity={1} onPress={onPress}>
 							<View style={androidStyle.content}>
-								{customComponent ? this.renderCustomComponent() : this.renderOwnComponent()}
+								{customComponent ? this.renderCustomComponent() : this.renderOwnComponent(androidStyle.text)}
 							</View>
 						</TouchableOpacity>
 					</Animated.View>
