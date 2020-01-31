@@ -21,7 +21,7 @@ export class Notification extends NotificationBase {
 	offset = Util.isIphoneX() ? 42 : (this.props.hideStatusBar ? 8 : 22);
 
 	render() {
-		const {textColor, customComponent, blurAmount, blurType = 'light', onPress, style, useForceTouch, showKnob, onForceTouchGestureEvent, onForceTouchHandlerStateChange} = this.props;
+		const {textColor, customComponent, blurAmount, blurType = 'light', style, useForceTouch, showKnob, onForceTouchGestureEvent, onForceTouchHandlerStateChange} = this.props;
 		const animatedStyle = [IOStyle.notification, {
 			top: this.offset,
 			transform: [{translateY: this.translateY}]
@@ -32,7 +32,7 @@ export class Notification extends NotificationBase {
 				<PanGestureHandler onHandlerStateChange={this.onHandlerStateChange} onGestureEvent={this.onGestureEvent}>
 					<Animated.View onLayout={this.handleOnLayout} style={animatedStyle}>
 						<Animated.View style={[IOStyle.innerContainer, style]}>
-							<TouchableOpacity style={IOStyle.container} activeOpacity={1} onPress={onPress}>
+                            <TouchableOpacity style={IOStyle.container} activeOpacity={1} onPress={() => this.handlePress()}>
 								<Blur style={[IOStyle.absolute, {borderRadius: border || 14}]} blurType={blurType}
 											blurAmount={blurAmount} />
 								<ForceTouchGestureHandler
