@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React  from 'react';
 import { Animated, View, Text, TouchableOpacity } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import { NotificationBase } from './NotificationBase';
@@ -41,24 +41,33 @@ export class Notification extends NotificationBase {
 	};
 
 	render() {
-		const {customComponent, onPress, style} = this.props;
-		const animatedStyle = [androidStyle.notification,
+		const {onPress, style} = this.props;
+
+		const animatedStyle = [
+			androidStyle.notification,
 			style, {
 				top: this.offset,
 				transform: [{translateY: this.translateY}]
-			}];
+			}
+		];
+
 		return (
-			<Fragment>
-				<PanGestureHandler onHandlerStateChange={this.onHandlerStateChange} onGestureEvent={this.onGestureEvent}>
-					<Animated.View onLayout={this.handleOnLayout} style={animatedStyle}>
-						<TouchableOpacity style={androidStyle.container} activeOpacity={1} onPress={onPress}>
-							<View style={androidStyle.content}>
-								{customComponent ? this.renderCustomComponent() : this.renderOwnComponent(androidStyle.text)}
-							</View>
-						</TouchableOpacity>
-					</Animated.View>
-				</PanGestureHandler>
-			</Fragment>
+			<PanGestureHandler
+				onHandlerStateChange={this.onHandlerStateChange}
+				onGestureEvent={this.onGestureEvent}>
+				<Animated.View
+					onLayout={this.handleOnLayout}
+					style={animatedStyle}>
+					<TouchableOpacity
+						style={androidStyle.container}
+						activeOpacity={1}
+						onPress={onPress}>
+						<View style={androidStyle.content}>
+							this.renderComponent(androidStyle.text)
+						</View>
+					</TouchableOpacity>
+				</Animated.View>
+			</PanGestureHandler>
 		)
 	}
 }

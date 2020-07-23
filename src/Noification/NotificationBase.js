@@ -144,11 +144,7 @@ export class NotificationBase extends React.Component {
 		}
 	};
 
-	renderCustomComponent() {
-		return this.props.customComponent;
-	}
-
-	renderOwnComponent(textStyle) {
+	renderComponent(textStyle) {
 		const {textColor} = this.props;
 		const {text} = this.state;
 

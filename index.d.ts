@@ -1,8 +1,6 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {StyleProp, ViewStyle} from "react-native";
 import {
-  ForceTouchGestureHandlerGestureEvent,
-  ForceTouchGestureHandlerStateChangeEvent,
   PanGestureHandlerGestureEvent
 } from "react-native-gesture-handler";
 
@@ -16,16 +14,12 @@ export interface NotificationProperties {
   text?: string,
   style?: StyleProp<ViewStyle> | {}, // iOS Only for now
   textColor?: string, // default - black
-  customComponent?: ReactNode,
   onPress?: () => void,
   onShow?: () => void,
   onHide?: () => void,
   hideStatusBar?: boolean, // iOS only, default = true
   onDragGestureEvent?: (event: PanGestureHandlerGestureEvent) => void,
   onDragGestureHandlerStateChange?: (event: PanGestureHandlerGestureEvent) => void,
-  onForceTouchGestureEvent?: (event: ForceTouchGestureHandlerGestureEvent) => void, // iOS Only and iPhone 6s+
-  onForceTouchHandlerStateChange?: (event: ForceTouchGestureHandlerStateChangeEvent) => void, // iOS Only and iPhone 6s+
-  useForceTouch?: boolean // iOS Only and iPhone 6s+, default - false
 }
 
 export class Notification extends React.Component<NotificationProperties, {}> {
