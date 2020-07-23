@@ -17,13 +17,15 @@ export class NotificationBase extends React.Component {
 		super(props);
 
 		this.state = {
-			text: ''
+			text: '',
+            action: () => {}
 		}
 
-		NotificationBase.show = (text = null) => {
+        NotificationBase.show = (text = null, action = () => {}) => {
 			try {
 				this.setState({
-					text: (text) ? text : this.props.text
+					text: (text) ? text : this.props.text,
+                    action
 				})
 
 				this.show();
@@ -150,4 +152,8 @@ export class NotificationBase extends React.Component {
 
 		return <Text style={[textStyle, {color: textColor}]}>{text}</Text>;
 	}
+
+    handlePress() {
+        this.state.action();
+    }
 }
