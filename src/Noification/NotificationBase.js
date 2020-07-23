@@ -1,12 +1,25 @@
 import React from 'react';
-import {Animated, Text, Easing, Platform, StatusBar} from 'react-native';
+import {
+    Animated,
+    Text,
+    Easing,
+    Platform,
+    StatusBar,
+    Dimensions,
+} from 'react-native';
+import {getInset} from 'react-native-safe-area-view';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {TapticFeedback} from '../../index';
 
 const animatedDuration = 350;
 const minVelocityToFling = -250;
-const navBarOffset = 56;
 
 const IS_IOS = Platform.OS === 'ios';
+
+const landScape =
+    Dimensions.get('window').width > Dimensions.get('window').height;
+const statusBar = Platform.OS === 'android' ? getStatusBarHeight() : 0;
+const TOP_INSET = getInset('top', landScape) + statusBar;
 
 export class NotificationBase extends React.Component {
     static show;
@@ -55,7 +68,7 @@ export class NotificationBase extends React.Component {
      * Default StatusBar offset.
      * .ios component overrides it depending on the type of iPhone
      */
-    offset = 22;
+    offset = TOP_INSET;
 
     /**
      * Height of Notification's root view, it changes after onLayout invoking
@@ -89,7 +102,7 @@ export class NotificationBase extends React.Component {
     hide = () => {
         const {hideStatusBar, onHide} = this.props;
         Animated.timing(this.translateY, {
-            toValue: (this.viewHeight + navBarOffset + this.offset * 2) * -1,
+            toValue: (this.viewHeight + this.offset) * -1,
             useNativeDriver: true,
             duration: animatedDuration,
             easing: Easing.bezier(0.53, 0.67, 0.19, 1.1),
@@ -150,9 +163,7 @@ export class NotificationBase extends React.Component {
         this.viewHeight = height;
         if (!this.onLayoutHasBeenInvoked) {
             this.onLayoutHasBeenInvoked = true;
-            this.translateY.setValue(
-                (height + navBarOffset + this.offset * 2) * -1
-            );
+            this.translateY.setValue((height + this.offset) * -1);
         }
     };
 
