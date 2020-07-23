@@ -1,8 +1,9 @@
+// @ts-ignore
 import React from 'react';
+// @ts-ignore
 import {StyleProp, ViewStyle} from "react-native";
-import {
-  PanGestureHandlerGestureEvent
-} from "react-native-gesture-handler";
+// @ts-ignore
+import {PanGestureHandlerGestureEvent} from "react-native-gesture-handler";
 
 export interface NotificationProperties {
   blurType?: 'xlight' | 'light' | 'dark', // iOS Only, default - light

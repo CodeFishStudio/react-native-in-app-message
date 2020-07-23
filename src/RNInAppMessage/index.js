@@ -1,2 +1,2 @@
-export { Blur } from './Blur';
-export { TapticFeedback } from './TapticFeedbackNativeModule';
+export {Blur} from './Blur';
+export {TapticFeedback} from './TapticFeedbackNativeModule';
