@@ -17,8 +17,6 @@ export class Notification extends NotificationBase {
         useForceTouch: false,
     };
 
-    offset = Util.isIphoneX() ? 42 : this.props.hideStatusBar ? 8 : 22;
-
     render() {
         const {
             textColor,
@@ -31,7 +29,7 @@ export class Notification extends NotificationBase {
         const animatedStyle = [
             IOStyle.notification,
             {
-                top: this.offset,
+                paddingTop: this.offset,
                 transform: [{translateY: this.translateY}],
             },
             IOStyle.mainStyle,

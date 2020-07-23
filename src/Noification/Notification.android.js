@@ -12,8 +12,6 @@ export class Notification extends NotificationBase {
         autohide: true,
     };
 
-    offset = 0;
-
     onHandlerStateChange = (event) => {
         const {
             velocityY,
@@ -29,7 +27,7 @@ export class Notification extends NotificationBase {
         if (state === 5) {
             if (velocityY < minVelocityToFling && numberOfPointers === 0) {
                 Animated.spring(this.translateY, {
-                    toValue: (this.viewHeight + this.offset * 2) * -1,
+                    toValue: (this.viewHeight + this.offset) * -1,
                     useNativeDriver: true,
                     velocity: velocityY,
                 }).start();
@@ -51,7 +49,7 @@ export class Notification extends NotificationBase {
             androidStyle.notification,
             style,
             {
-                top: this.offset,
+                paddingTop: this.offset,
                 transform: [{translateY: this.translateY}],
             },
         ];
